@@ -10,5 +10,8 @@ const nextConfig = {
     unoptimized: true,
   },
 }
-
+module.exports = {
+  output: 'export',
+  // Additional configurations
+};
 export default nextConfig
