@@ -45,7 +45,7 @@ export function Navigation() {
 
             {isOpen && (
               <div className="fixed inset-0 top-16 z-50 bg-background animate-in slide-in-from-top-5">
-                <nav className="container flex flex-col gap-4 py-8">
+                <nav className="container flex flex-col gap-4 py-8 bg-blue-900">
                   {navItems.map((item) => (
                     <Link
                       key={item.path}

@@ -10,7 +10,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { useToast } from "@/hooks/use-toast"
-import { Mail, Phone, MapPin, Send, Github, Linkedin, ExternalLink } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Linkedin, ExternalLink } from "lucide-react"
+import { sendEmail } from "../actions/email"
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -41,19 +42,43 @@ export default function ContactPage() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log(values)
+      // Create FormData object
+      const formData = new FormData()
+      formData.append("name", values.name)
+      formData.append("email", values.email)
+      formData.append("subject", values.subject)
+      formData.append("message", values.message)
+
+      // Send email using server action
+      const result = await sendEmail(formData)
+
+      // Show toast based on result
       toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
+        title: result.success ? "Message Sent!" : "Error",
+        description: result.message,
+        variant: result.success ? "default" : "destructive",
       })
-      form.reset()
+
+      // Reset the form if successful
+      if (result.success) {
+        form.reset()
+      }
+    } catch (error) {
+      // Show error toast if something goes wrong
+      console.error("Form submission error:", error)
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
+      // Always set submitting to false
       setIsSubmitting(false)
-    }, 1500)
+    }
   }
 
   return (
@@ -204,19 +229,9 @@ export default function ContactPage() {
             <h2 className="text-2xl font-bold mb-6">Connect With Me</h2>
             <div className="space-y-6">
               <p className="text-muted-foreground">
-                Feel free to connect with me on social media or check out my work on GitHub.
+                Feel free to connect with me on social media or check out my work online.
               </p>
               <div className="space-y-4">
-                <a
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-md hover:bg-muted transition-colors"
-                >
-                  <Github className="h-5 w-5" />
-                  <span>GitHub</span>
-                  <ExternalLink className="h-4 w-4 ml-auto" />
-                </a>
                 <a
                   href="https://linkedin.com/in/nandhakumar-k-4683a8250"
                   target="_blank"

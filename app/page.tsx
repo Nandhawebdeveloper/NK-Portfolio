@@ -119,26 +119,29 @@ export default function Home() {
             {
               title: "School Management System",
               description: "Comprehensive ERP solution for schools with student, teacher, and admin portals.",
-              image: "/images/react-project-1.png",
+              image: "/images/school-management.png",
               tags: ["React", "Redux", "Bootstrap"],
+              id: "school-management",
             },
             {
               title: "College Management System",
               description: "Feature-rich platform for college administration and student management.",
-              image: "/images/react-project-2.png",
+              image: "/images/college-management.png",
               tags: ["React", "JavaScript", "CSS"],
+              id: "college-management",
             },
             {
               title: "Training Institute Software",
               description: "Custom solution for training institutes to manage courses, students, and instructors.",
-              image: "/images/react-project-3.png",
+              image: "/images/training-institute.png",
               tags: ["React", "Redux", "Responsive Design"],
+              id: "training-institute",
             },
           ].map((project, index) => (
             <Card key={index} className="overflow-hidden">
               <div className="relative h-[200px] w-full">
                 <Image
-                  src={project.image || "/placeholder.svg"}
+                  src={project.image || "/placeholder.svg?height=200&width=400"}
                   alt={project.title}
                   fill
                   className="object-cover transition-transform hover:scale-105"
@@ -147,12 +150,19 @@ export default function Home() {
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                 <p className="text-muted-foreground mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag, i) => (
                     <Badge key={i} variant="outline">
                       {tag}
                     </Badge>
                   ))}
+                </div>
+                <div className="mt-4">
+                  <Link href={`/projects/${project.id}`}>
+                    <Button variant="default" className="w-full">
+                      View Details
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>

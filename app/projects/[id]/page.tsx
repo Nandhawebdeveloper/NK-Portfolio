@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowLeft, ExternalLink, Github, CheckCircle2 } from "lucide-react"
+import { ArrowLeft, CheckCircle2 } from "lucide-react"
 
 export default function ProjectPage({ params }: { params: { id: string } }) {
   // This would typically come from a database or API
@@ -41,8 +41,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         "Used React Router for efficient navigation between modules",
         "Optimized database queries for faster data retrieval",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "college-management",
@@ -75,8 +73,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         "Used Chart.js for interactive data visualization",
         "Optimized API calls with caching strategies",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "training-institute",
@@ -109,8 +105,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         "Used interactive charts for visualizing progress data",
         "Implemented comprehensive testing for critical system components",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "admin-dashboard",
@@ -143,8 +137,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         "Created modular report components with customization options",
         "Implemented comprehensive authentication and authorization",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "e-learning-platform",
@@ -177,8 +169,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         "Implemented a drag-and-drop interface for course creation",
         "Optimized database queries and implemented caching",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "responsive-portfolio",
@@ -211,8 +201,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         "Implemented a filterable project gallery",
         "Followed WCAG guidelines for accessibility",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
   ]
 
@@ -242,7 +230,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
       {/* Project Image */}
       <div className="relative w-full h-[300px] md:h-[500px] rounded-lg overflow-hidden">
-        <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
+        <Image
+          src={project.image || "/placeholder.svg?height=500&width=1000"}
+          alt={project.title}
+          fill
+          className="object-cover"
+        />
       </div>
 
       {/* Project Details */}
@@ -267,18 +260,6 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               ))}
             </div>
           </div>
-          <div className="flex gap-4">
-            <Link href={project.demoLink}>
-              <Button className="gap-2">
-                <ExternalLink className="h-4 w-4" /> Live Demo
-              </Button>
-            </Link>
-            <Link href={project.codeLink}>
-              <Button variant="outline" className="gap-2">
-                <Github className="h-4 w-4" /> View Code
-              </Button>
-            </Link>
-          </div>
         </TabsContent>
         <TabsContent value="features" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -297,7 +278,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             {project.gallery.map((image, i) => (
               <div key={i} className="relative h-[200px] rounded-lg overflow-hidden">
                 <Image
-                  src={image || "/placeholder.svg"}
+                  src={image || "/placeholder.svg?height=200&width=400"}
                   alt={`${project.title} screenshot ${i + 1}`}
                   fill
                   className="object-cover"
@@ -345,7 +326,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               <Card key={relatedProject.id} className="overflow-hidden">
                 <div className="relative h-[150px] w-full">
                   <Image
-                    src={relatedProject.image || "/placeholder.svg"}
+                    src={relatedProject.image || "/placeholder.svg?height=150&width=300"}
                     alt={relatedProject.title}
                     fill
                     className="object-cover"

@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExternalLink, Github } from "lucide-react"
 
 export default function ProjectsPage() {
   const projects = [
@@ -24,8 +23,6 @@ export default function ProjectsPage() {
         "Fee Management",
         "Timetable Generation",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "college-management",
@@ -43,8 +40,6 @@ export default function ProjectsPage() {
         "Library Management",
         "Student Performance Analytics",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "training-institute",
@@ -62,8 +57,6 @@ export default function ProjectsPage() {
         "Certificate Generation",
         "Payment Processing",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "admin-dashboard",
@@ -81,8 +74,6 @@ export default function ProjectsPage() {
         "Customizable Reports",
         "Dark/Light Theme",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "e-learning-platform",
@@ -100,8 +91,6 @@ export default function ProjectsPage() {
         "Discussion Forums",
         "Certificate Generation",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
     {
       id: "responsive-portfolio",
@@ -119,8 +108,6 @@ export default function ProjectsPage() {
         "Skills Display",
         "Testimonials Section",
       ],
-      demoLink: "#",
-      codeLink: "#",
     },
   ]
 
@@ -158,7 +145,7 @@ export default function ProjectsPage() {
                   <Card key={project.id} className="overflow-hidden flex flex-col h-full">
                     <div className="relative h-[200px] w-full">
                       <Image
-                        src={project.image || "/placeholder.svg"}
+                        src={project.image || "/placeholder.svg?height=200&width=400"}
                         alt={project.title}
                         fill
                         className="object-cover transition-transform hover:scale-105"
@@ -177,20 +164,10 @@ export default function ProjectsPage() {
                           </Badge>
                         ))}
                       </div>
-                      <div className="flex gap-2 mt-auto">
-                        <Link href={`/projects/${project.id}`} className="flex-1">
+                      <div className="mt-auto">
+                        <Link href={`/projects/${project.id}`} className="w-full">
                           <Button variant="default" className="w-full">
                             View Details
-                          </Button>
-                        </Link>
-                        <Link href={project.demoLink} className="flex-0">
-                          <Button variant="outline" size="icon">
-                            <ExternalLink className="h-4 w-4" />
-                          </Button>
-                        </Link>
-                        <Link href={project.codeLink} className="flex-0">
-                          <Button variant="outline" size="icon">
-                            <Github className="h-4 w-4" />
                           </Button>
                         </Link>
                       </div>
